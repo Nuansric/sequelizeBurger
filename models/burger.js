@@ -19,27 +19,23 @@ devoured: {
 // }
 
 
-},{
-	timestamps: true
-}// },{
-//       // We're saying that we want our Author to have Posts
-//       classMethods: {
-//         associate: function(models) {
-//           // An Author (foreignKey) is required or a Post can't be made
-//           burgerSequelize.hasMany(models.costumer, {
-//             foreignKey: {
-//               allowNull: false,
-//               defaultValue: 0
-
-//             }
-//           });
-//         }
-//        }
-//    }
-
-);
-
-return burgerSequelize;
-
+},{//adding foreign key to the table,, it will know to add the id column which is unique
+    classMethods: {
+      associate: function(models) {
+        // Using additional options like CASCADE etc for demonstration
+        // Can also simply do Task.belongsTo(models.User);
+        burgerSequelize.belongsTo(models.costumer, {
+          // onDelete: "CASCADE",
+          foreignKey: {
+            allowNull: true
+            // , defaultValue: 0
+          }
+        });
+      }
+    }
+  }
+  // Add another "configuration" obect as an argument to set up an association to Authors
+  // Example: http://docs.sequelizejs.com/en/1.7.0/articles/express/#modelstaskjs
+  );
+  return burgerSequelize;
 }
-

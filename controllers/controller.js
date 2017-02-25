@@ -11,14 +11,10 @@ module.exports = function(app){
 
 
 
-//  app.get("/login", function(req, res) {
-
-//     res.sendFile(path.join(__dirname + "/../public/login.html"));
-// });  
 
 app.get("/", function(req, res){
   db.burgerSequelize.findAll({
-    // include: [db.costumer]
+    include: [db.costumer]
   }).then(function(data){
     console.log(data);
       var burgerObj = {
@@ -37,7 +33,8 @@ app.post("/", function(req, res){
       burger_name: req.body.burger_name,
       devoured: false,
       createdAt: req.body.created_at,
-      updatedAt: req.body.created_at
+      updatedAt: req.body.created_at,
+      // costumerId: 1
 
    }).then(function(){
       
@@ -60,7 +57,7 @@ app.put("/:id", function(req, res){
               
               devoured: req.body.devoured,
               updatedAt: req.body.created_at,
-              // costumerId: user.id
+              costumerId: user.id
             }, {
               where: {
                 id: req.params.id
@@ -84,35 +81,3 @@ app.put("/:id", function(req, res){
 
 }
 
-
-// router.get("/", function(req, res) {
-//   burger.selectAll(function(data) {
-//     var burgerObj = {
-//       burgers: data
-//     };
-//     console.log(burgerObj);
-//     res.render("index", burgerObj);
-//   });
-// });
-
-// router.post("/", function(req, res) {
-//   burger.insertOne([
-//     "burger_name", "devoured"
-//   ], [
-//     req.body.burger_name, false
-//   ], function() {
-//     res.redirect("/");
-//   });
-// });
-
-// router.put("/:id", function(req, res) {
-//   var condition = "id = " + req.params.id;
-
-//   console.log("condition", condition);
-
-//   burger.updateOne({
-//     devoured: req.body.devoured
-//   }, condition, function() {
-//     res.redirect("/");
-//   });
-// });
