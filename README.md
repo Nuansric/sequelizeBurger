@@ -10,3 +10,5 @@ This app is a burger and costumer logger.
 * MySQL
 * Sequelize
 * MVC
+
+####Try it [https://whispering-stream-57750.herokuapp.com/](https://whispering-stream-57750.herokuapp.com/)
